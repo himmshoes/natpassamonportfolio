@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nat Passamon - UX/UI Design Portfolio</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 300; color: #1a1a1a; line-height: 1.6; background-color: #fafafa; }
+        
+        .navbar { background-color: #0a0a0a; padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; }
+        .navbar .logo { color: #ffffff; font-size: 1.2rem; font-weight: 700; }
+        
+        /* Premium Hero Section */
+        .home-hero { padding: 120px 60px 80px 60px; max-width: 1200px; margin: 0 auto; text-align: center; }
+        .home-hero .label { color: #1a56db; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 16px; }
+        .home-hero h1 { font-size: 3.5rem; font-weight: 700; line-height: 1.2; margin-bottom: 24px; color: #0a0a0a; }
+        .home-hero h1 span { color: #0d9488; }
+        .home-hero p { font-size: 1.25rem; color: #4a5568; max-width: 700px; margin: 0 auto; }
+
+        /* Project Grid */
+        .portfolio-section { padding: 40px 60px 120px 60px; max-width: 1200px; margin: 0 auto; }
+        .project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+        
+        /* Project Cards */
+        .project-card { background: #ffffff; border-radius: 16px; overflow: hidden; text-decoration: none; color: inherit; box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: all 0.4s ease; border: 1px solid #e2e8f0; display: flex; flex-direction: column; }
+        .project-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); border-color: #0d9488; }
+        
+        .card-image { width: 100%; height: 240px; overflow: hidden; background-color: #f1f5f9; position: relative; }
+        .card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .project-card:hover .card-image img { transform: scale(1.05); }
+        
+        .card-content { padding: 30px; flex-grow: 1; display: flex; flex-direction: column; }
+        .card-tag { color: #1a56db; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
+        .card-content h3 { font-size: 1.4rem; font-weight: 700; color: #0a0a0a; margin-bottom: 12px; line-height: 1.3; }
+        .card-content p { font-size: 0.95rem; color: #4a5568; margin-bottom: 24px; line-height: 1.6; flex-grow: 1; }
+        
+        .card-link { font-size: 0.85rem; font-weight: 700; color: #0d9488; display: flex; align-items: center; gap: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+        .card-link::after { content: '→'; transition: transform 0.3s ease; }
+        .project-card:hover .card-link::after { transform: translateX(5px); }
+
+        .footer { background-color: #0a0a0a; padding: 40px 60px; display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
+        .footer .logo { color: #ffffff; font-size: 1.2rem; font-weight: 700; }
+        .footer .copyright { color: #888; font-size: 0.85rem; }
+
+        @media (max-width: 992px) {
+            .project-grid { grid-template-columns: 1fr; gap: 30px; }
+            .home-hero h1 { font-size: 2.5rem; }
+            .navbar, .home-hero, .portfolio-section, .footer { padding: 40px 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">&lt;epam&gt;</div>
+    </nav>
+
+    <header class="home-hero">
+        <div class="label">UX/UI Designer Portfolio</div>
+        <h1>Hi, I'm Nat Passamon. <br>I design <span>Intelligent Platforms</span>.</h1>
+        <p>Specializing in enterprise tools, highly-dense dashboards, complex data flows, and intelligent supply chain ecosystems.</p>
+    </header>
+
+    <main class="portfolio-section">
+        <div class="project-grid">
+            
+            <!-- PROJECT 1: PTTEP Marine -->
+            <a href="pttep-marine.html" class="project-card">
+                <div class="card-image">
+                    <!-- Note: You can replace this with a thumbnail of PTTEP Marine -->
+                    <img src="images/hero.png" alt="PTTEP Marine">
+                </div>
+                <div class="card-content">
+                    <div class="card-tag">Maritime Logistics</div>
+                    <h3>PTTEP Marine</h3>
+                    <p>Streamlining complex offshore supply chain operations and transit tracking into an intelligent, data-driven platform.</p>
+                    <div class="card-link">View Case Study</div>
+                </div>
+            </a>
+
+            <!-- PROJECT 2 (Placeholder) -->
+            <a href="project2.html" class="project-card">
+                <div class="card-image">
+                    <img src="images/offshore.png" alt="Project 2">
+                </div>
+                <div class="card-content">
+                    <div class="card-tag">Fintech / Enterprise</div>
+                    <h3>Project Two Title</h3>
+                    <p>A short preview description of your second design project. Explain what major user experience issue you solved.</p>
+                    <div class="card-link">View Case Study</div>
+                </div>
+            </a>
+
+            <!-- PROJECT 3 (Placeholder) -->
+            <a href="project3.html" class="project-card">
+                <div class="card-image">
+                    <img src="images/supply.png" alt="Project 3">
+                </div>
+                <div class="card-content">
+                    <div class="card-tag">SaaS Platform</div>
+                    <h3>Project Three Title</h3>
+                    <p>A short preview description of your third design project. Detail the user outcomes and clean user interface.</p>
+                    <div class="card-link">View Case Study</div>
+                </div>
+            </a>
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="logo">&lt;epam&gt;</div>
+        <span class="copyright">© 2026 Nat Passamon</span>
+    </footer>
+
+</body>
+</html>

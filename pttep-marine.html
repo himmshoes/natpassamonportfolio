@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PTTEP Marine - Nat Passamon Portfolio</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 300; color: #1a1a1a; line-height: 1.6; }
+        .navbar { background-color: #0a0a0a; padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; }
+        .navbar .logo { color: #ffffff; font-size: 1.2rem; font-weight: 700; }
+        .navbar .btn-back { color: #ffffff; border: 1.5px solid #0d9488; border-radius: 30px; padding: 10px 24px; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; transition: all 0.3s ease; }
+        .navbar .btn-back:hover { background-color: #0d9488; color: #0a0a0a; }
+        .label { color: #1a56db; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 16px; }
+        .hero { background: linear-gradient(135deg, #f0f0ff 0%, #e8f4ff 100%); padding: 100px 60px; min-height: 450px; display: flex; flex-direction: row; justify-content: space-between; align-items: center; gap: 40px; }
+        .hero-content { flex: 1; max-width: 550px; }
+        .hero-image { flex: 1; display: flex; justify-content: flex-end; }
+        .hero-image img { width: 100%; max-width: 500px; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.15); }
+        .hero h1 { font-size: 3rem; font-weight: 700; line-height: 1.2; margin-bottom: 24px; max-width: 700px; }
+        .hero h1 span { color: #1a56db; }
+        .hero p { font-size: 1.1rem; line-height: 1.7; max-width: 600px; color: #333; }
+        .overview { background-color: #ffffff; padding: 80px 60px; }
+        .overview .section-title { color: #1a56db; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 24px; }
+        .overview .divider { border: none; border-top: 2px solid #1a56db; margin-bottom: 40px; }
+        .overview-content { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+        .overview-left .sub-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #1a1a1a; margin-bottom: 12px; }
+        .overview-left p { font-size: 1rem; color: #333; margin-bottom: 30px; }
+        .overview-left .divider-light { border: none; border-top: 1px solid #ddd; margin-bottom: 30px; }
+        .overview-right p { font-size: 1rem; color: #333; line-height: 1.8; }
+        .overview-right .sub-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #1a1a1a; margin-bottom: 12px; }
+        .background-section { background-color: #e8e8f5; padding: 80px 60px; }
+        .background-section .section-title { font-size: 2rem; font-weight: 700; margin-bottom: 40px; }
+        .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .card { background-color: #fef3c7; border-radius: 12px; padding: 30px; }
+        .card .card-label { color: #1a56db; font-size: 0.85rem; font-weight: 600; margin-bottom: 4px; }
+        .card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 16px; }
+        .card p { font-size: 0.95rem; color: #444; line-height: 1.6; }
+        .card img { width: 100%; border-radius: 8px; margin-bottom: 16px; }
+        
+        /* Problem Section Styling (Left Image, Vertical Right Cards) */
+        .problem-section { background-color: #e8e8f5; padding: 80px 60px; }
+        .problem-section .section-title { font-size: 2rem; font-weight: 700; margin-bottom: 40px; }
+        .problem-content { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+        .problem-left { width: 100%; }
+        .problem-left img { width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); display: block; }
+        .problem-right { display: flex; flex-direction: column; gap: 20px; }
+        .problem-card { background-color: #fef3c7; border-radius: 12px; padding: 24px; display: flex; align-items: flex-start; gap: 20px; text-align: left; }
+        .problem-card .icon { font-size: 2rem; line-height: 1; min-width: 40px; }
+        .problem-card .card-text h4 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; color: #1a1a1a; }
+        .problem-card .card-text p { font-size: 0.9rem; color: #444; line-height: 1.5; }
+        
+        .research-section { background-color: #e8e8f5; padding: 80px 60px; }
+        .research-section .section-label { color: #1a56db; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 12px; }
+        .research-section .section-title { font-size: 2rem; font-weight: 700; margin-bottom: 40px; }
+        .research-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-bottom: 60px; }
+        .research-card { background-color: #fef3c7; border-radius: 12px; padding: 30px; }
+        .research-card h4 { font-size: 0.85rem; font-weight: 700; color: #1a56db; margin-bottom: 8px; }
+        .research-card h5 { font-size: 1rem; font-weight: 700; margin-bottom: 12px; }
+        .research-card p { font-size: 0.95rem; color: #444; line-height: 1.6; }
+        .research-card img { width: 100%; border-radius: 8px; margin-top: 16px; }
+        .findings-section { background-color: #e8e8f5; padding: 80px 60px; }
+        .findings-section .section-label { color: #1a56db; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 12px; }
+        .findings-section .section-title { font-size: 2rem; font-weight: 700; margin-bottom: 40px; }
+        .findings-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+        .finding-card { background-color: #ffffff; border-radius: 12px; padding: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .finding-card h4 { font-size: 0.85rem; font-weight: 700; color: #1a56db; margin-bottom: 8px; }
+        .finding-card h5 { font-size: 1rem; font-weight: 700; margin-bottom: 12px; }
+        .finding-card p { font-size: 0.95rem; color: #444; line-height: 1.6; }
+        .finding-card img { width: 100%; border-radius: 8px; margin-top: 16px; }
+        
+        /* HIGH-FIDELITY FIGMA LAYOUT STYLING */
+        .design-section { background-color: #1a1a24; padding: 100px 60px; color: #ffffff; }
+        .design-section .section-header-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px; }
+        .design-section .section-label { color: #0d9488; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; }
+        .design-section .logo-corner { color: #4a4a5a; font-size: 0.9rem; font-weight: 700; }
+        
+        .slide-header { margin-bottom: 50px; }
+        .slide-title-wrapper { display: flex; align-items: center; gap: 15px; margin-bottom: 16px; }
+        .design-section .section-title { font-size: 2.6rem; font-weight: 700; color: #ffffff; margin-bottom: 0; }
+        .design-section .wavy-arrow { color: #ffffff; display: inline-block; opacity: 0.85; }
+        .design-section .section-subtitle { font-size: 1.1rem; color: #a0aec0; line-height: 1.7; max-width: 900px; }
+        
+        .design-slides { display: flex; flex-direction: column; gap: 140px; }
+        .design-slide-wrapper { border-top: 1px solid #2d2d3d; padding-top: 60px; }
+        .design-slide-wrapper:first-child { border-top: none; padding-top: 0; }
+        
+        /* The side-by-side synchronized row container */
+        .design-slide { display: flex; flex-direction: row; gap: 50px; align-items: stretch; position: relative; }
+        .slide-image { flex: 1.2; display: flex; align-items: flex-start; }
+        .slide-image img { width: 100%; height: auto; border-radius: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.6); display: block; border: 1px solid #2d2d3d; }
+        
+        /* Figma Brackets and Features Column */
+        .slide-features { flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .feature-row { display: grid; grid-template-columns: 140px 60px 1fr; gap: 10px; align-items: center; position: relative; }
+        
+        /* Precise vertical bracket cap drawing */
+        .feature-label-col {
+            position: relative;
+            padding-right: 15px;
+            text-align: right;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #a0aec0;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            border-right: 1px solid #4a5568; /* Vertical line */
+        }
+        /* Top cap of the bracket */
+        .feature-label-col::before {
+            content: '';
+            position: absolute;
+            right: -1px;
+            top: 0;
+            width: 8px;
+            height: 1px;
+            background-color: #4a5568;
+        }
+        /* Bottom cap of the bracket */
+        .feature-label-col::after {
+            content: '';
+            position: absolute;
+            right: -1px;
+            bottom: 0;
+            width: 8px;
+            height: 1px;
+            background-color: #4a5568;
+        }
+        
+        /* Figma horizontal connector line with arrow */
+        .feature-connector { display: flex; align-items: center; justify-content: center; position: relative; width: 100%; }
+        .feature-connector::before { content: ''; width: 100%; height: 1px; background-color: #eab308; opacity: 0.8; }
+        .feature-connector::after { content: ''; width: 6px; height: 6px; border-top: 1px solid #eab308; border-right: 1px solid #eab308; transform: rotate(45deg); position: absolute; right: 0; }
+        
+        /* Feature Content Styling */
+        .feature-content { padding: 15px 0; }
+        .feature-content h4 { font-size: 1.2rem; font-weight: 700; color: #ffffff; margin-bottom: 8px; }
+        .feature-content p { font-size: 0.95rem; color: #cbd5e0; line-height: 1.6; }
+        .feature-content .sub-bullet { margin-top: 20px; }
+        
+        /* Slide Specific Precise Heights matching Figma zones */
+        /* Slide 1 - Image has 2 main sections (top half and bottom half) */
+        .slide-1-row { height: 50%; }
+        
+        /* Slide 2 - Full-height scheduling visual mapping to 1 massive bracket with 2 bullets */
+        .slide-2-row { height: 100%; }
+        
+        /* Slide 3 - Super tall screen matching 5 precise vertical zone heights */
+        .slide-3-row-1 { height: 18%; }
+        .slide-3-row-2 { height: 16%; }
+        .slide-3-row-3 { height: 20%; }
+        .slide-3-row-4 { height: 26%; }
+        .slide-3-row-5 { height: 20%; }
+        
+        .outcome-section { background-color: #fef9e7; padding: 80px 60px; }
+        .outcome-section .section-label { color: #1a56db; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 40px; }
+        .outcome-rows { display: flex; flex-direction: column; gap: 40px; }
+        .outcome-row { display: grid; grid-template-columns: 250px 1fr; gap: 40px; padding-bottom: 30px; border-bottom: 1px solid #ddd; }
+        .outcome-row .outcome-icon-title { display: flex; align-items: flex-start; gap: 12px; }
+        .outcome-row .outcome-icon { font-size: 1.5rem; }
+        .outcome-row .outcome-title { font-size: 1.3rem; font-weight: 700; color: #1a56db; line-height: 1.3; }
+        .outcome-row .outcome-desc { font-size: 1rem; color: #333; line-height: 1.7; padding-top: 4px; }
+        .footer { background-color: #0a0a0a; padding: 30px 60px; display: flex; justify-content: space-between; align-items: center; }
+        .footer .logo { color: #ffffff; font-size: 1.2rem; font-weight: 700; }
+        .footer .copyright { color: #888; font-size: 0.85rem; }
+        .footer .btn-back { color: #ffffff; border: 1.5px solid #0d9488; border-radius: 30px; padding: 10px 24px; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; transition: all 0.3s ease; }
+        .footer .btn-back:hover { background-color: #0d9488; color: #0a0a0a; }
+        
+        @media (max-width: 1024px) {
+            .navbar, .hero, .overview, .background-section, .problem-section, .research-section, .findings-section, .design-section, .outcome-section, .footer { padding: 40px 24px; }
+            .hero { flex-direction: column; }
+            .hero h1 { font-size: 2rem; }
+            .overview-content { grid-template-columns: 1fr; }
+            .cards-grid { grid-template-columns: 1fr; }
+            .problem-content { grid-template-columns: 1fr; gap: 30px; }
+            .problem-card { flex-direction: column; align-items: center; text-align: center; }
+            .problem-card .icon { min-width: auto; }
+            .research-cards, .findings-cards { grid-template-columns: 1fr; }
+            
+            /* Fallback to simple stacks on tablets/phones */
+            .design-slide { flex-direction: column; gap: 40px; }
+            .feature-row { grid-template-columns: 1fr; gap: 8px; }
+            .feature-label-col { border-right: none; border-bottom: 2px solid #4a5568; text-align: left; justify-content: flex-start; padding: 5px 0; height: auto; }
+            .feature-label-col::before, .feature-label-col::after { display: none; }
+            .feature-connector { display: none; }
+            .slide-1-row, .slide-2-row, .slide-3-row-1, .slide-3-row-2, .slide-3-row-3, .slide-3-row-4, .slide-3-row-5 { height: auto; }
+            
+            .outcome-row { grid-template-columns: 1fr; gap: 12px; }
+            .footer { flex-direction: column; gap: 16px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">&lt;epam&gt;</div>
+       <a href="index.html" class="btn-back">Back to Portfolio</a>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="label">UX/UI Designer</div>
+            <h1><span>PTTEP Marine</span> Driving Intelligent Offshore Logistics</h1>
+            <p>Vessel Route Optimization, Cargo & Fuel (MGO) Tracking, Passenger Scheduling, and Multi-leg Transit Planning.</p>
+        </div>
+        <div class="hero-image">
+            <img src="images/hero.png" alt="PTTEP Marine Dashboard">
+        </div>
+    </section>
+
+    <section class="overview">
+        <div class="section-title">At a Glance Overview</div>
+        <hr class="divider">
+        <div class="overview-content">
+            <div class="overview-left">
+                <div class="sub-label">Client</div>
+                <p>PTTEP Marine</p>
+                <hr class="divider-light">
+                <div class="sub-label">Services</div>
+                <p>Vessel Route Optimization, Cargo & Fuel (MGO) Tracking, Passenger Scheduling, Multi-leg Transit Planning</p>
+                <hr class="divider-light">
+                <div class="sub-label">User Base</div>
+                <p>Internal Marine Operations, Fleet Managers, and Offshore Personnel</p>
+            </div>
+            <div class="overview-right">
+                <div class="sub-label">Mission</div>
+                <p>To streamline complex offshore supply chain operations by transforming manual, fragmented coordination into a centralized, data-driven management platform.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="background-section">
+        <div class="section-title">Background & Context</div>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-label">Optimizing</div>
+                <h3>Offshore Transportation</h3>
+                <img src="images/offshore.png" alt="Offshore Transportation">
+                <p>Coordinate vessels, crews, and cargo between offshore buoys with real-time visibility and optimized route planning.</p>
+            </div>
+            <div class="card">
+                <div class="card-label">Crew Transfer</div>
+                <h3>Operations</h3>
+                <img src="images/crew.png" alt="Crew Transfer">
+                <p>Safely coordinate and monitor offshore crew rotations and basket transfers between vessels and installations.</p>
+            </div>
+            <div class="card">
+                <div class="card-label">Platform</div>
+                <h3>Supply Logistics</h3>
+                <img src="images/supply.png" alt="Supply Logistics">
+                <p>Conducting day-trip inspections for safety compliance, structural checks, and Offshore supply chain.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Framing Layout (Left Image, 3 Vertical Right Cards) -->
+    <section class="problem-section">
+        <div class="section-title">Problem Framing</div>
+        <div class="problem-content">
+            <!-- Left Side: Image -->
+            <div class="problem-left">
+               <img src="images/problem-visual.png" alt="Problem Framing Visual" class="problem-img">
+            </div>
+            <!-- Right Side: 3 Vertical Cards -->
+            <div class="problem-right">
+                <div class="problem-card">
+                    <div class="icon">⬇️</div>
+                    <div class="card-text">
+                        <h4>Resource & Supplies</h4>
+                        <p>Delivery delays across offshore routes impacting operational timelines.</p>
+                    </div>
+                </div>
+                <div class="problem-card">
+                    <div class="icon">👥</div>
+                    <div class="card-text">
+                        <h4>Crew Attendance</h4>
+                        <p>Low visibility into workforce status and personnel tracking across platforms.</p>
+                    </div>
+                </div>
+                <div class="problem-card">
+                    <div class="icon">📊</div>
+                    <div class="card-text">
+                        <h4>Cost Efficiency</h4>
+                        <p>Low vessel utilization rates resulting in unnecessary fuel expenditures.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="research-section">
+        <div class="section-label">Research</div>
+        <div class="section-title">Deep Research</div>
+        <div class="research-cards">
+            <div class="research-card">
+                <h4>The Problem</h4>
+                <h5>🚨 Fuel Fraud & Supply Leakage</h5>
+                <p>Limited visibility into Marine Gas Oil (MGO) consumption and trip execution led to fuel fraud and untracked fuel loss.</p>
+                <img src="images/research1.png" alt="Fuel Fraud Research">
+            </div>
+            <div class="research-card">
+                <h4>The Problem</h4>
+                <h5>📉 Suboptimal Asset Allocation</h5>
+                <p>Disconnected passenger scheduling and vessel allocation resulted in underutilized trips and increased offshore operating costs.</p>
+                <img src="images/research2.png" alt="Asset Allocation Research">
+            </div>
+        </div>
+    </section>
+
+    <section class="findings-section">
+        <div class="section-label">Research</div>
+        <div class="section-title">Key Find Out</div>
+        <div class="findings-cards">
+            <div class="finding-card">
+                <h4>Design Solution</h4>
+                <h5>📈 From Data to Smarter Operations</h5>
+                <p>Monitor MGO usage and PT/NPT performance in real time to uncover inefficiencies and improve operational decisions.</p>
+                <img src="images/finding1.png" alt="Data Operations">
+            </div>
+            <div class="finding-card">
+                <h4>Design Solution</h4>
+                <h5>🚢 Smarter Vessel Allocation</h5>
+                <p>Optimize multi-leg routes with real-time seat availability for maximum fleet efficiency.</p>
+                <img src="images/finding2.png" alt="Vessel Allocation">
+            </div>
+        </div>
+    </section>
+
+    <!-- HIGH FIDELITY DESIGN SECTION -->
+    <section class="design-section">
+        
+        <div class="section-header-top">
+            <div class="section-label">Design</div>
+            <div class="logo-corner">&lt;epam&gt;</div>
+        </div>
+        
+        <div class="design-slides">
+            
+            <!-- SLIDE 1: Operational & Fleet Metrics Overview -->
+            <div class="design-slide-wrapper">
+                <div class="slide-header">
+                    <div class="slide-title-wrapper">
+                        <h2 class="section-title">Operational & Fleet Metrics Overview</h2>
+                        <svg class="wavy-arrow" width="46" height="22" viewBox="0 0 46 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                            <path d="M2 11 Q11 2 22 11 T42 11" />
+                            <path d="M37 6 L43 11 L37 16" />
+                        </svg>
+                    </div>
+                    <p class="section-subtitle">The main entry point providing a high-level operational summary of passenger demand, trip schedules, and marine gas oil (MGO) fuel metrics across offshore routes.</p>
+                </div>
+                
+                <div class="design-slide">
+                    <div class="slide-image">
+                        <img src="images/design1.png" alt="Operational & Fleet Metrics Overview Dashboard">
+                    </div>
+                    <div class="slide-features">
+                        <!-- Feature 1 Bracket -->
+                        <div class="feature-row slide-1-row">
+                            <div class="feature-label-col">Trip Statistics</div>
+                            <div class="feature-connector"></div>
+                            <div class="feature-content">
+                                <h4>High-Level Monitoring & Navigation</h4>
+                                <p>Marine coordinators monitor overall passenger volumes (PAX), track "No-Show" rates, and review trip performance.</p>
+                            </div>
+                        </div>
+                        <!-- Feature 2 Bracket -->
+                        <div class="feature-row slide-1-row">
+                            <div class="feature-label-col">Summary Passenger Statistics & Trip Statistics</div>
+                            <div class="feature-connector"></div>
+                            <div class="feature-content">
+                                <h4>Deep-Dive Triggers</h4>
+                                <p>Check overall summary of passenger and vessel data; clicking on specific summary cards directly navigates coordinators into granular, dedicated analytics pages.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 2: Trip Schedule & Speed Optimization -->
+            <div class="design-slide-wrapper">
+                <div class="slide-header">
+                    <div class="slide-title-wrapper">
+                        <h2 class="section-title">Trip Schedule & Speed Optimization</h2>
+                        <svg class="wavy-arrow" width="46" height="22" viewBox="0 0 46 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                            <path d="M2 11 Q11 2 22 11 T42 11" />
+                            <path d="M37 6 L43 11 L37 16" />
+                        </svg>
+                    </div>
+                    <p class="section-subtitle">An interactive scheduling interface and overlay modal designed for multi-leg vessel route planning and speed parameter adjustments</p>
+                </div>
+                
+                <div class="design-slide">
+                    <div class="slide-image">
+                        <img src="images/design2.png" alt="Trip Schedule & Speed Optimization interface">
+                    </div>
+                    <div class="slide-features">
+                        <!-- Full height single bracket containing 2 sub-bullet items -->
+                        <div class="feature-row slide-2-row">
+                            <div class="feature-label-col">Trip Statistics</div>
+                            <div class="feature-connector"></div>
+                            <div class="feature-content">
+                                <div>
+                                    <h4>Replaces Intuitive/Manual Scheduling</h4>
+                                    <p>Replaces guessing with data-backed route decisions, avoiding redundant trips and excessive fuel burn caused by uncoordinated vessel speeds.</p>
+                                </div>
+                                <div class="sub-bullet">
+                                    <h4>Weather Condition Tracking</h4>
+                                    <p>Monitor real-time marine weather and environmental conditions to ensure safe transit and operational decisions.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 3: Comprehensive Trip Analytics & Performance Dashboard -->
+            <div class="design-slide-wrapper">
+                <div class="slide-header">
+                    <div class="slide-title-wrapper">
+                        <h2 class="section-title">Comprehensive Trip Analytics & Performance Dashboard</h2>
+                        <svg class="wavy-arrow" width="46" height="22" viewBox="0 0 46 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                            <path d="M2 11 Q11 2 22 11 T42 11" />
+                            <path d="M37 6 L43 11 L37 16" />
+                        </svg>
+                    </div>
+                    <p class="section-subtitle">A detailed operational and financial breakdown screen dedicated to trip efficiency, speed profiles, distance traveled, and fuel (MGO) consumption trends over time.</p>
+                </div>
+                
+                <div class="design-slide">
+                    <div class="slide-image">
+                        <img src="images/design3.png" alt="Trip Analytics & Performance Dashboard Screen">
+                    </div>
+                    <div class="slide-features">
+                        <!-- Bracket 1: Trip Statistics -->
+                        <div class="feature-row slide-3-row-1">
+                            <div class="feature-label-col">Trip Statistics</div>
+                            <div class="feature-connector"></div>
+                            <div class="feature-content">
+                                <h4>Combats Fuel Fraud & Supply Leakage</h4>
+                                <p>Provides granular visibility into actual MGO consumption per trip, preventing unauthorized fuel loss and unaccounted-for transit waste.</p>
+                            </div>
+                        </div>
+                        <!-- Bracket 2: Trip Summary -->
+                        <div class="feature-row slide-3-row-2">
+                            <div class="feature-label-col">Trip Summary</div>
+                            <div class="feature-connector"></div>
+                            <div class="feature-content">
+                                <h4>Holistic Fleet Performance</h4>
+                                <p>Aggregates total trip counts, operational utilization rates, average speeds, durations, and distances into a single comprehensive overview.</p>
+                            </div>
+                        </div>
+                        <!-- Bracket 3: Yearly Comparison -->
+                        <div class="feature-row slide-3-row-3">
+                            <div class="feature-label-col">Yearly Comparison</div>
+                            <div class="feature-connector"></div>
+                            <div class="feature-content">
+                                <h4>Long-Term Trend Analysis</h4>
+                                <p>Compares actual versus planned trip performance across months and years to identify seasonal patterns and optimize future resource allocation.</p>
+                            </div>
+                        </div>
+                        <!-- Bracket 4: MGO Consumption -->
+                        <div class="feature-row slide-3-row-4">
+                            <div class="feature-label-col">MGO Consumption, Consumption Breakdown</div>
+                            <div class="feature-connector"></div>
+                            <div class="feature-content">
+                                <h4>MGO Financial & Trend Auditing</h4>
+                                <p>Coordinators monitor monthly MGO consumption volumes and financial expenses across years, allowing them to track fuel costs and optimize future trip budgets.</p>
+                            </div>
+                        </div>
+                        <!-- Bracket 5: PT / NPT Analysis -->
+                        <div class="feature-row slide-3-row-5">
+                            <div class="feature-label-col">PT / NPT Analysis</div>
+                            <div class="feature-connector"></div>
+                            <div class="feature-content">
+                                <h4>Productive vs. Non-Productive Tracking</h4>
+                                <p>Coordinators monitor PT (Productive Time) and NPT (Non-Productive Time) durations alongside vessel activities to evaluate operational efficiency and minimize avoidable delays.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="outcome-section">
+        <div class="section-label">Outcome</div>
+        <div class="outcome-rows">
+            <div class="outcome-row">
+                <div class="outcome-icon-title">
+                    <span class="outcome-icon">⚡</span>
+                    <span class="outcome-title">Operational Efficiency</span>
+                </div>
+                <p class="outcome-desc">Digitized manual planning workflows, reducing repetitive coordination and improving scheduling accuracy across offshore operations.</p>
+            </div>
+            <div class="outcome-row">
+                <div class="outcome-icon-title">
+                    <span class="outcome-icon">📊</span>
+                    <span class="outcome-title">Decision Intelligence</span>
+                </div>
+                <p class="outcome-desc">Enabled operators to quickly interpret complex fleet data through structured information architecture and high-density dashboards.</p>
+            </div>
+            <div class="outcome-row">
+                <div class="outcome-icon-title">
+                    <span class="outcome-icon">🛡️</span>
+                    <span class="outcome-title">Risk Mitigation</span>
+                </div>
+                <p class="outcome-desc">Introduced validation logic for complex routing scenarios, helping prevent planning errors before execution.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="logo">&lt;epam&gt;</div>
+        <span class="copyright">© 2026 Nat Passamon</span>
+        <a href="index.html" class="btn-back">Back to Portfolio</a>
+    </footer>
+
+</body>
+</html>

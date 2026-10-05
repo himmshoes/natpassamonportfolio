@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrueMoney Wallet - Nat Passamon Portfolio</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 300; color: #1a1a1a; line-height: 1.6; background-color: #fafafa; }
+        
+        .navbar { background-color: #0a0a0a; padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; }
+        .navbar .logo { color: #ffffff; font-size: 1.2rem; font-weight: 700; }
+        .navbar .btn-back { color: #ffffff; border: 1.5px solid #f05a22; border-radius: 30px; padding: 10px 24px; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; transition: all 0.3s ease; }
+        .navbar .btn-back:hover { background-color: #f05a22; color: #ffffff; }
+        
+        .label { color: #f05a22; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 16px; }
+        
+        /* TrueMoney Branding Hero */
+        .hero { background: linear-gradient(135deg, #fff5f0 0%, #ffece4 100%); padding: 100px 60px; min-height: 480px; display: flex; flex-direction: row; justify-content: space-between; align-items: center; gap: 40px; }
+        .hero-content { flex: 1.2; max-width: 650px; }
+        .hero-image { flex: 1; display: flex; justify-content: flex-end; }
+        .hero-image img { width: 100%; max-width: 480px; border-radius: 12px; box-shadow: 0 20px 60px rgba(240, 90, 34, 0.15); }
+        .hero h1 { font-size: 3rem; font-weight: 700; line-height: 1.2; margin-bottom: 24px; color: #1a1a1a; }
+        .hero h1 span { color: #f05a22; }
+        .hero p { font-size: 1.15rem; line-height: 1.7; color: #4a4a4a; }
+        
+        /* Overview Section */
+        .overview { background-color: #ffffff; padding: 80px 60px; }
+        .overview .section-title { color: #f05a22; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 24px; }
+        .overview .divider { border: none; border-top: 2px solid #f05a22; margin-bottom: 40px; }
+        .overview-content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; }
+        .overview-left .sub-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #1a1a1a; margin-bottom: 12px; }
+        .overview-left p { font-size: 1rem; color: #333; margin-bottom: 30px; }
+        .overview-left .divider-light { border: none; border-top: 1px solid #ddd; margin-bottom: 30px; }
+        .overview-right p { font-size: 1.05rem; color: #4a4a4a; line-height: 1.8; }
+        .overview-right .sub-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #1a1a1a; margin-bottom: 12px; }
+        
+        /* Background and Problem Section */
+        .background-section { background-color: #fcfcfd; padding: 80px 60px; border-top: 1px solid #f0f0f2; }
+        .background-section .section-title { font-size: 2.2rem; font-weight: 700; margin-bottom: 40px; color: #1a1a1a; }
+        
+        .challenge-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: center; margin-bottom: 80px; }
+        .challenge-images-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .challenge-images-pair img { width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border: 1px solid #e2e8f0; }
+        .challenge-details { display: flex; flex-direction: column; gap: 24px; }
+        
+        .story-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: center; }
+        .story-image img { width: 100%; border-radius: 12px; box-shadow: 0 15px 45px rgba(0,0,0,0.12); }
+        
+        /* Quotes Section */
+        .user-voices { background-color: #f4f4f9; padding: 80px 60px; }
+        .user-voices .section-title { font-size: 2.2rem; font-weight: 700; margin-bottom: 40px; color: #1a1a1a; }
+        .quotes-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+        .quote-card { background: #ffffff; padding: 30px; border-radius: 12px; border-left: 4px solid #f05a22; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
+        .quote-card p { font-style: italic; font-size: 1.05rem; color: #4a4a4a; line-height: 1.6; }
+        
+        /* Opportunity Callout */
+        .opportunity-banner { background: #e0f2fe; padding: 50px; border-radius: 16px; margin-top: 60px; text-align: center; border: 1px solid #bae6fd; }
+        .opportunity-banner h3 { font-size: 0.85rem; font-weight: 700; color: #0284c7; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 12px; }
+        .opportunity-banner p { font-size: 1.8rem; font-weight: 700; color: #0369a1; line-height: 1.3; }
+        .opportunity-banner p span { color: #f05a22; }
+        
+        /* Competitive Analysis */
+        .research-section { background-color: #ffffff; padding: 100px 60px; }
+        .research-section .section-label { color: #f05a22; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 12px; }
+        .research-section .section-title { font-size: 2.2rem; font-weight: 700; margin-bottom: 40px; color: #1a1a1a; }
+        
+        .research-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 50px; align-items: center; }
+        .analysis-images-triple { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        .analysis-images-triple img { width: 100%; border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); border: 1px solid #e2e8f0; }
+        .research-info { display: flex; flex-direction: column; gap: 24px; }
+        .research-card { background-color: #fff9f6; border-radius: 12px; padding: 30px; border: 1px solid #ffece4; }
+        .research-card h4 { font-size: 0.85rem; font-weight: 700; color: #f05a22; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+        .research-card h5 { font-size: 1.2rem; font-weight: 700; margin-bottom: 12px; color: #1a1a1a; }
+        .research-card p { font-size: 0.95rem; color: #4a4a4a; line-height: 1.6; }
+        
+        /* User Engagement and Behavioral Data */
+        .engagement-section { background-color: #fffaf7; padding: 100px 60px; border-top: 1px solid #ffece4; border-bottom: 1px solid #ffece4; }
+        .engagement-section .section-title { font-size: 2.2rem; font-weight: 700; margin-bottom: 40px; }
+        
+        .engagement-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 60px; align-items: center; }
+        .engagement-images-pair { display: grid; grid-template-columns: 1.2fr 1fr; gap: 24px; }
+        .engagement-images-pair img { width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .engagement-info { display: flex; flex-direction: column; gap: 20px; }
+        
+        /* HIGH-FIDELITY DESIGN FOCUS COMPARISON GRIDS */
+        .design-section { background-color: #1a1a24; padding: 100px 60px; color: #ffffff; }
+        .design-section .section-header-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px; }
+        .design-section .section-label { color: #f05a22; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; }
+        .design-section .logo-corner { color: #4a4a5a; font-size: 0.9rem; font-weight: 700; }
+        
+        .design-slides { display: flex; flex-direction: column; gap: 140px; }
+        .design-slide-wrapper { border-top: 1px solid #2d2d3d; padding-top: 80px; }
+        .design-slide-wrapper:first-child { border-top: none; padding-top: 0; }
+        
+        .slide-header { margin-bottom: 50px; }
+        .slide-title-wrapper { display: flex; align-items: center; gap: 15px; margin-bottom: 16px; }
+        .design-section .section-title { font-size: 2.6rem; font-weight: 700; color: #ffffff; margin-bottom: 0; }
+        .design-section .wavy-arrow { color: #f05a22; display: inline-block; }
+        .design-section .section-subtitle { font-size: 1.1rem; color: #a0aec0; line-height: 1.7; max-width: 900px; }
+        
+        /* Side-by-Side Comparison Layout */
+        .comparison-grid { display: grid; grid-template-columns: 1fr 1.2fr 1fr; gap: 40px; align-items: center; }
+        
+        .phone-mockup-wrapper { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+        .phone-tag { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 6px 16px; border-radius: 20px; }
+        .phone-tag.redesigned { background-color: #065f46; color: #34d399; border: 1px solid #047857; }
+        .phone-tag.original { background-color: #2d3748; color: #a0aec0; border: 1px solid #4a5568; }
+        
+        .phone-mockup-wrapper img { width: 100%; height: auto; border-radius: 16px; box-shadow: 0 15px 45px rgba(0,0,0,0.5); display: block; border: 1px solid #2d2d3d; max-height: 520px; object-fit: contain; }
+        
+        /* Explanations Column Styling */
+        .figma-explanations-card { background-color: #242436; border-radius: 12px; padding: 30px; border: 1px solid #2d2d3d; display: flex; flex-direction: column; gap: 24px; position: relative; }
+        
+        .explanation-item { display: flex; flex-direction: column; gap: 8px; position: relative; }
+        .explanation-item h4 { font-size: 1.15rem; font-weight: 700; color: #ffffff; display: flex; align-items: center; gap: 8px; }
+        .explanation-item h4::before { content: '✦'; color: #f05a22; font-size: 1rem; }
+        .explanation-item p { font-size: 0.95rem; color: #cbd5e0; line-height: 1.6; }
+        
+        /* OUTCOME SECTIONS */
+        .outcome-section { background-color: #fffdf9; padding: 100px 60px; border-top: 1px solid #ffece4; }
+        .outcome-section .section-label { color: #f05a22; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 40px; }
+        .outcome-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 60px; align-items: center; }
+        .outcome-image img { width: 100%; border-radius: 16px; box-shadow: 0 20px 45px rgba(240, 90, 34, 0.08); border: 1px solid #ffece4; }
+        .outcome-details { display: flex; flex-direction: column; gap: 30px; }
+        .outcome-metric { display: flex; align-items: flex-start; gap: 20px; }
+        .outcome-icon { font-size: 1.8rem; background: #ffece4; padding: 12px; border-radius: 12px; line-height: 1; }
+        .outcome-text h4 { font-size: 1.2rem; font-weight: 700; color: #1a1a1a; margin-bottom: 6px; }
+        .outcome-text p { font-size: 1rem; color: #4a4a4a; line-height: 1.6; }
+        
+        @media (max-width: 1024px) {
+            .navbar, .hero, .overview, .background-section, .user-voices, .research-section, .engagement-section, .design-section, .outcome-section, .footer { padding: 40px 24px; }
+            .hero { flex-direction: column; text-align: center; }
+            .hero-image { justify-content: center; }
+            .overview-content, .challenge-grid, .story-grid, .quotes-grid, .research-grid, .engagement-grid, .outcome-grid { grid-template-columns: 1fr; gap: 40px; }
+            .challenge-images-pair, .analysis-images-triple, .engagement-images-pair { grid-template-columns: 1fr; }
+            
+            /* Collapse comparison grids on tablets and mobile screens */
+            .comparison-grid { grid-template-columns: 1fr; gap: 30px; }
+            .phone-mockup-wrapper { order: 1; }
+            .figma-explanations-card { order: 2; }
+            
+            .footer { flex-direction: column; gap: 16px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">&lt;epam&gt;</div>
+        <a href="index.html" class="btn-back">Back to Portfolio</a>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="label">Senior Product Designer</div>
+            <h1>Money Wallet Empowers <span>Your Financial Journey</span></h1>
+            <p>Redefining everyday convenience by consolidating essential financial services into a single, highly intuitive digital wallet application.</p>
+        </div>
+        <div class="hero-image">
+            <img src="images/project2-hero.png" alt="TrueMoney Wallet App Screen">
+        </div>
+    </section>
+
+    <!-- OVERVIEW SECTION -->
+    <section class="overview">
+        <div class="section-title">At a Glance Overview</div>
+        <hr class="divider">
+        <div class="overview-content">
+            <div class="overview-left">
+                <div class="sub-label">Services Provided</div>
+                <p>Retail store payments, instant P2P money transfers, and bill management.</p>
+                <hr class="divider-light">
+                <div class="sub-label">User Base</div>
+                <p>1M+ Active Users</p>
+                <hr class="divider-light">
+                <div class="sub-label">Branding Strategy</div>
+                <p>TrueMoney Orange Core | Highly Accessible Layouts | Unified Financial Ecosystem</p>
+            </div>
+            <div class="overview-right">
+                <div class="sub-label">Mission Statement</div>
+                <p>Our core goal was to declutter the user flow and maximize service discovery, establishing a unified interface that supports users’ everyday financial actions without overwhelming them with options.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BACKGROUND & CONTEXT (CHALLENGE) -->
+    <section class="background-section">
+        <div class="section-title">Background & Context</div>
+        
+        <!-- Challenge row (Grid with 2 side-by-side screens) -->
+        <div class="challenge-grid">
+            <div class="challenge-images-pair">
+                <img src="images/project2-research1.png" alt="Homepage Complexity screen">
+                <img src="images/project2-research2.png" alt="All Services Gaps screen">
+            </div>
+            <div class="challenge-details">
+                <div class="label">The Challenge</div>
+                <h3 style="font-size: 1.8rem; font-weight: 700; line-height: 1.3;">Confronting Complexity in Financial SaaS</h3>
+                <p style="color: #4a4a4a; font-size: 1.05rem;">The previous homepage presented **70+ financial services** in a single, unstructured view. This layout caused immense cognitive fatigue, making it exceptionally difficult for users to find core features like payments or direct utility bills quickly.</p>
+                <p style="color: #4a4a4a; font-size: 1.05rem;">The information architecture lacked a clear visual hierarchy, burying high-priority transaction entry points under less frequently accessed promotional and secondary content blocks.</p>
+            </div>
+        </div>
+
+        <!-- Story row (Grid with 1 angled phone mockup) -->
+        <div class="story-grid">
+            <div class="story-image">
+                <img src="images/project2-story.png" alt="One App Every Financial Need mockup">
+            </div>
+            <div class="challenge-details">
+                <div class="label">The Solution</div>
+                <h3 style="font-size: 1.8rem; font-weight: 700; line-height: 1.3;">One App, Every Financial Need</h3>
+                <p style="color: #4a4a4a; font-size: 1.05rem;">We unified payments, transfers, and wealth services into a connected ecosystem supercharged with rewards, promotions, and gamified engagement to elevate money management.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- USER VOICES & OPPORTUNITY -->
+    <section class="user-voices">
+        <div class="section-title">User Voices</div>
+        <div class="quotes-grid">
+            <div class="quote-card">
+                <p>"I wasn't sure where to start. It took too long to find what I needed."</p>
+            </div>
+            <div class="quote-card">
+                <p>"There are too many options on the homepage. I just got distracted by other services."</p>
+            </div>
+            <div class="quote-card">
+                <p>"I couldn't find a way to add money to my wallet right away."</p>
+            </div>
+            <div class="quote-card">
+                <p>"The homepage looks so busy, and I didn't know what was important."</p>
+            </div>
+        </div>
+
+        <!-- How Might We Banner -->
+        <div class="opportunity-banner">
+            <h3>The Opportunity</h3>
+            <p>How might we highlight <span>essential services</span> and reduce <span>visual clutter</span>?</p>
+        </div>
+    </section>
+
+    <!-- COMPETITIVE BENCHMARKING -->
+    <section class="research-section">
+        <div class="section-label">Research</div>
+        <div class="section-title">Competitive Benchmarking & Market Comparison</div>
+        <div class="research-grid">
+            <div class="analysis-images-triple">
+                <img src="images/project2-analysis1.png" alt="Dolfin competitor">
+                <img src="images/project2-analysis2.png" alt="Rabbit Line Pay competitor">
+                <img src="images/project2-analysis3.png" alt="Shopee Pay competitor">
+            </div>
+            <div class="research-info">
+                <div class="research-card">
+                    <h4>Market Comparison</h4>
+                    <h5>Benchmarking Best-in-Class Platforms</h5>
+                    <p>We systematically analyzed major market leaders (Dolfin, Shopee Pay, Rabbit Line Pay) to find the perfect formula for clean card-based UI pathways, gamified user retention, and optimal service prioritization.</p>
+                </div>
+                <div class="research-card">
+                    <h4>Key Insights</h4>
+                    <h5>Streamlining Homepage Architecture</h5>
+                    <p>Unlike competitors that rely on endless scrolling and aggressive promotional banners, our redesign focuses heavily on immediate, click-accessible core transaction blocks.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- USER ENGAGEMENT & USER RESEARCH -->
+    <section class="engagement-section">
+        <div class="section-title">User Engagement & Behavioral Insights</div>
+        <div class="engagement-grid">
+            <div class="engagement-info">
+                <div class="label">Behavioral Deep Dive</div>
+                <h3 style="font-size: 1.8rem; font-weight: 700; line-height: 1.3; margin-bottom: 20px;">Understanding User Focus</h3>
+                <p style="color: #4a4a4a; font-size: 1.05rem; margin-bottom: 20px;">Based on simulated support call logs and usage statistics, **100% of analyzed users** prioritize direct, rapid transaction workflows (checking balances, adding money, and scanning barcodes).</p>
+                <p style="color: #4a4a4a; font-size: 1.05rem;">Conversely, advertisements and third-party promotional panels received the absolute least amount of focus (under 20% engagement). This data directly drove our layout simplification process.</p>
+            </div>
+            <div class="engagement-image">
+                <div class="engagement-images-pair">
+                    <img src="images/project2-engagement1.png" alt="Engagement priorities chart">
+                    <img src="images/project2-engagement2.png" alt="Behavior deep dive pie chart">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HIGH-FIDELITY SIDE-BY-SIDE DESIGN SLIDES -->
+    <section class="design-section">
+        
+        <div class="section-header-top">
+            <div class="section-label">Design Focuses</div>
+            <div class="logo-corner">&lt;epam&gt;</div>
+        </div>
+        
+        <div class="design-slides">
+            
+            <!-- FOCUS 1: Transactions -->
+            <div class="design-slide-wrapper">
+                <div class="slide-header">
+                    <div class="slide-title-wrapper">
+                        <h2 class="section-title">Focus 1: Transactions</h2>
+                        <svg class="wavy-arrow" width="46" height="22" viewBox="0 0 46 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                            <path d="M2 11 Q11 2 22 11 T42 11" />
+                            <path d="M37 6 L43 11 L37 16" />
+                        </svg>
+                    </div>
+                    <p class="section-subtitle">Balancing rapid transaction workflows with streamlined visual components on the primary wallet cards.</p>
+                </div>
+                
+                <!-- Side-by-Side Comparative Grid -->
+                <div class="comparison-grid">
+                    <!-- Column 1: Revised UI -->
+                    <div class="phone-mockup-wrapper">
+                        <span class="phone-tag redesigned">Redesigned UI</span>
+                        <img src="images/focus1-revised.png" alt="Redesigned UI for Focus 1">
+                    </div>
+                    
+                    <!-- Column 2: Middle Figma Explanations -->
+                    <div class="figma-explanations-card">
+                        <div class="explanation-item">
+                            <h4>Wallet Balance Placement</h4>
+                            <p>Prioritized the wallet balance on the home screen, placing it alongside primary actions since checking available funds is users’ first task before scanning to pay at 7-Eleven or other merchants.</p>
+                        </div>
+                        <div class="explanation-item">
+                            <h4>Decluttered Action Pathways</h4>
+                            <p>Moving less frequently used functions like “Transfer” and “Add Friend” into a secondary drop-down menu ensures a cleaner interface without cognitive overwhelm.</p>
+                        </div>
+                        <div class="explanation-item">
+                            <h4>Outcome Goal</h4>
+                            <p>This structural arrangement minimizes active navigation time and seamlessly supports highly efficient core task completion.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Column 3: Original UI -->
+                    <div class="phone-mockup-wrapper">
+                        <span class="phone-tag original">Original UI</span>
+                        <img src="images/focus1-original.png" alt="Original UI for Focus 1">
+                    </div>
+                </div>
+            </div>
+
+            <!-- FOCUS 2: Gamified Coin Rewards System -->
+            <div class="design-slide-wrapper">
+                <div class="slide-header">
+                    <div class="slide-title-wrapper">
+                        <h2 class="section-title">Focus 2: Gamified Coin Rewards System</h2>
+                        <svg class="wavy-arrow" width="46" height="22" viewBox="0 0 46 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                            <path d="M2 11 Q11 2 22 11 T42 11" />
+                            <path d="M37 6 L43 11 L37 16" />
+                        </svg>
+                    </div>
+                    <p class="section-subtitle">Integrating gamified systems to trigger deeper engagement loops and repeated transactions.</p>
+                </div>
+                
+                <!-- Side-by-Side Comparative Grid -->
+                <div class="comparison-grid">
+                    <!-- Column 1: Revised UI -->
+                    <div class="phone-mockup-wrapper">
+                        <span class="phone-tag redesigned">Redesigned UI</span>
+                        <img src="images/focus2-revised.png" alt="Redesigned UI for Focus 2">
+                    </div>
+                    
+                    <!-- Column 2: Middle Figma Explanations -->
+                    <div class="figma-explanations-card">
+                        <div class="explanation-item">
+                            <h4>Mission Relocation</h4>
+                            <p>Moved the “Complete Mission” card directly from the nested services sub-menu into the primary transaction area.</p>
+                        </div>
+                        <div class="explanation-item">
+                            <h4>Unified Interaction Zone</h4>
+                            <p>By locating the coin rewards in the same area as transactions, users can seamlessly check their active rewards and make payments simultaneously.</p>
+                        </div>
+                        <div class="explanation-item">
+                            <h4>Motivational Design</h4>
+                            <p>This immediate visibility acts as a positive feedback trigger, encouraging users to engage with missions and rewards more frequently.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Column 3: Original UI -->
+                    <div class="phone-mockup-wrapper">
+                        <span class="phone-tag original">Original UI</span>
+                        <img src="images/focus2-original.png" alt="Original UI for Focus 2">
+                    </div>
+                </div>
+            </div>
+
+            <!-- FOCUS 3: Bill Payments & Promos -->
+            <div class="design-slide-wrapper">
+                <div class="slide-header">
+                    <div class="slide-title-wrapper">
+                        <h2 class="section-title">Focus 3: Bill Payments & Promos</h2>
+                        <svg class="wavy-arrow" width="46" height="22" viewBox="0 0 46 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                            <path d="M2 11 Q11 2 22 11 T42 11" />
+                            <path d="M37 6 L43 11 L37 16" />
+                        </svg>
+                    </div>
+                    <p class="section-subtitle">Making high-traffic bill payment tiles and engaging promotional panels more visually attractive and direct.</p>
+                </div>
+                
+                <!-- Side-by-Side Comparative Grid -->
+                <div class="comparison-grid">
+                    <!-- Column 1: Revised UI -->
+                    <div class="phone-mockup-wrapper">
+                        <span class="phone-tag redesigned">Redesigned UI</span>
+                        <img src="images/focus3-revised.png" alt="Redesigned UI for Focus 3">
+                    </div>
+                    
+                    <!-- Column 2: Middle Figma Explanations -->
+                    <div class="figma-explanations-card">
+                        <div class="explanation-item">
+                            <h4>Eye-Catching Card Layouts</h4>
+                            <p>I designed 'Deals' cards with highly engaging imagery and bold discount badges, instantly highlighting value to entice clicks.</p>
+                        </div>
+                        <div class="explanation-item">
+                            <h4>Clear Value Proposition</h4>
+                            <p>Displaying discount pricing prominently captures visual focus, allowing users to rapidly find valuable deals without digging through menus.</p>
+                        </div>
+                        <div class="explanation-item">
+                            <h4>Conversion Loop</h4>
+                            <p>This visual approach increases click-through rates and successfully motivates users to interact more with promotional offerings.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Column 3: Original UI -->
+                    <div class="phone-mockup-wrapper">
+                        <span class="phone-tag original">Original UI</span>
+                        <img src="images/focus3-original.png" alt="Original UI for Focus 3">
+                    </div>
+                </div>
+            </div>
+
+            <!-- FOCUS 4: Financial Prioritization -->
+            <div class="design-slide-wrapper">
+                <div class="slide-header">
+                    <div class="slide-title-wrapper">
+                        <h2 class="section-title">Focus 4: Financial Prioritization</h2>
+                        <svg class="wavy-arrow" width="46" height="22" viewBox="0 0 46 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                            <path d="M2 11 Q11 2 22 11 T42 11" />
+                            <path d="M37 6 L43 11 L37 16" />
+                        </svg>
+                    </div>
+                    <p class="section-subtitle">Decluttering the lower sections of the homepage by establishing clean categorical divisions.</p>
+                </div>
+                
+                <!-- Side-by-Side Comparative Grid -->
+                <div class="comparison-grid">
+                    <!-- Column 1: Revised UI -->
+                    <div class="phone-mockup-wrapper">
+                        <span class="phone-tag redesigned">Redesigned UI</span>
+                        <img src="images/focus4-revised.png" alt="Redesigned UI for Focus 4">
+                    </div>
+                    
+                    <!-- Column 2: Middle Figma Explanations -->
+                    <div class="figma-explanations-card">
+                        <div class="explanation-item">
+                            <h4>Low-Priority Demotion</h4>
+                            <p>Arranged "Financial" and "Recommended financial services" as lower priority cards towards the bottom of the home screen layout.</p>
+                        </div>
+                        <div class="explanation-item">
+                            <h4>Usability Boost</h4>
+                            <p>This organizational change dramatically minimizes visual noise, highlighting high-priority transaction tools where users expect them.</p>
+                        </div>
+                        <div class="explanation-item">
+                            <h4>Engagement Cleanliness</h4>
+                            <p>Keeping secondary options cleanly separated ensures users find primary payment cards satisfying and highly accessible.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Column 3: Original UI -->
+                    <div class="phone-mockup-wrapper">
+                        <span class="phone-tag original">Original UI</span>
+                        <img src="images/focus4-original.png" alt="Original UI for Focus 4">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- OUTCOME SECTION -->
+    <section class="outcome-section">
+        <div class="section-label">Outcome</div>
+        <div class="outcome-grid">
+            <div class="outcome-details">
+                <h3 style="font-size: 2.2rem; font-weight: 700; color: #1a1a1a; margin-bottom: 24px; line-height: 1.2;">Delivering Verifiable Customer Success</h3>
+                
+                <div class="outcome-metric">
+                    <div class="outcome-icon">⚡</div>
+                    <div class="outcome-text">
+                        <h4>Turning First-Time Users into Active Customers</h4>
+                        <p>**+25% New User Conversion:** More new users completed their very first wallet funding and direct digital transaction within the crucial 3-day activity window after registration.</p>
+                    </div>
+                </div>
+
+                <div class="outcome-metric" style="margin-top: 20px;">
+                    <div class="outcome-icon">💬</div>
+                    <div class="outcome-text">
+                        <h4>Enhanced Brand Sentiment</h4>
+                        <p>User sentiments shifted dramatically. Post-launch reviews described the interface overwhelmingly with keywords like **"Clean," "Simple," "Fast," and "Less Clutter."**</p>
+                    </div>
+                </div>
+            </div>
+            <div class="outcome-grid-right">
+                <div class="outcome-image">
+                    <img src="images/project2-outcome.png" alt="Figma Outcome charts and word cloud">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="logo">&lt;epam&gt;</div>
+        <span class="copyright">© 2026 Nat Passamon</span>
+        <a href="index.html" class="btn-back">Back to Portfolio</a>
+    </footer>
+
+</body>
+</html>
